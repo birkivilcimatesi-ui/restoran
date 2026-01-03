@@ -1,0 +1,346 @@
+Bu harika bir fikir! Projeniz bu aşamada bir "üründen" bir SaaS (Software as a Service - Hizmet Olarak Yazılım) platformuna dönüşüyor. Yani her restoranın kendi hesabını açtığı, kendi ürünlerini girdiği ve abonelik ödediği merkezi bir sistem.
+
+Merkezi Kayıt Sistemi (Authentication)
+Kullanıcılar (Restoran sahipleri) web sitenize gelip "Kayıt Ol" diyecek. Kayıt olduklarında arka planda onlara özel bir company_id atanacak.
+Veritabanı Tasarımı (sana bırakıyorum)
+Operasyonel Uygulama (Flutter)
+Adım 4: Abonelik ve Ödeme (Paywall)
+her restoranın kendi ürün listesi ve fiyat bilgisini veya masa sayı bilgisini girmesi için kullanışlı bir çözüm
+
+ürün ekleme:
+300 ürünü olan bir işletme için tek tek veri girişi yapmak, müşterinin ürünü kullanmaktan vazgeçmesine (churn) neden olabilecek en büyük engeldir. Bu süreci "dakikalara" indirmek için şu 3 profesyonel yöntemi sunmalısın:
+
+1. Excel / CSV ile Toplu İçe Aktarma (Sektör Standardı)
+En güvenilir ve hızlı yöntemdir. İşletme sahibine boş bir şablon verirsin, o kendi listesini oraya kopyalar ve sisteme yükler.
+
+Nasıl Çalışır? Kullanıcı "Ürün Yükle" butonuna tıklar, sistem ona bir .xlsx veya .csv dosyası indirttirir.
+
+Kolaylık: "Ad, Fiyat, Kategori" sütunlarını doldurup geri yüklediğinde, arka planda (Supabase/Backend) tüm ürünler saniyeler içinde oluşur.
+
+Öneri: Kullanıcının mevcut karmaşık listesini senin şablonuna uydurması için bir "Sütun Eşleştirme" ekranı yapabilirsin (Örn: "Senin listendeki 'Tutar' sütununu bizim 'Fiyat' sütununa bağla").
+
+2. Yapay Zeka (OCR) ile Menü Okuma (Modern Çözüm) 🔥
+Bu, uygulaman için müthiş bir satış noktası olur. Restoran sahibinin elinde zaten fiziksel bir menü veya PDF vardır.
+
+Nasıl Çalışır? Kullanıcı menünün fotoğrafını çeker veya PDF'ini yükler.
+
+Teknoloji: Google Vision API veya Gemini Pro Vision kullanarak görseldeki metni analiz edersin.
+
+Süreç: 1. Fotoğraf yüklenir. 2. AI; ürün adı, kategori ve fiyatı ayrıştırır. 3. Kullanıcının önüne bir liste gelir: "Bunları buldum, onaylıyor musun?" 4. Kullanıcı "Onayla" dediği an 300 ürün sisteme girer.
+
+
+önce bir web sitesi tanıtım gibi sonra kayıt olma sonra kayıt olunca restoran yönetimi ekranı admin paneli o ocr exsel falan görmek için sonra
+
+uygulamada ayrı habitatlar oluşturmak:
+Restoran sahibinin "herkes için tek tek hesap açma" veya "sürekli giriş-çıkış yapma" zahmetinden kurtulması, sistemin benimsenmesi için en kritik nokta. Bahsettiğin o "özel habitatı" (çalışma alanını) kurmak için en profesyonel yaklaşım **"Workspace (Çalışma Alanı) Sistemi"**dir.
+
+İşte bu süreci "tak-çalıştır" kolaylığına getirecek 4 aşamalı çözüm:
+
+1. Benzersiz Restoran URL'si (Subdomain)
+Her restoran kayıt olduğunda ona özel bir URL tanımlarsın. Örn: kahvediyari.tableflow.app
+
+PC/Kasa İçin: Kasa sorumlusu tarayıcıyı açar, bu linke gider. Sistem onu hatırlar (Cookie/Local Storage sayesinde) ve her sabah bilgisayarı açtığında direkt masa ekranı karşısına gelir.
+
+Avantajı: "Sitemiz neydi?", "Şifrem neydi?" derdini ortadan kaldırır.
+
+2. Terminal / Cihaz Yetkilendirme (QR Kod ile Giriş)
+Garsonların her seferinde e-posta ve şifre yazması restoran hızına aykırıdır. Bunun yerine "Cihaz Eşleştirme" mantığını kullanmalısın:
+
+Restoran sahibi admin panelinden "Yeni Cihaz Ekle" butonuna basar.
+
+Ekranda tek seferlik bir QR kod veya 6 haneli bir kod çıkar.
+
+Garson, tabletinden veya telefonundan TableFlow uygulamasını açar, bu kodu okutur.
+
+Bitti! O cihaz artık o restoranın "Garson Terminali" olarak tanımlanır. Kullanıcı adı/şifre sormaz, uygulama açıldığı anda direkt masaları getirir.
+
+3. "Always-On" (7/24 Açık) Yapısı: Real-Time Sync
+Sistemin bir habitat gibi canlı hissettirmesi için Supabase Realtime veya Firebase Firestore kullanmalısın.
+
+Anlık Senkronizasyon: Garson masaya bir "Çay" eklediği an, kasadaki bilgisayarda ve mutfaktaki tablette o masanın rengi anında turuncuya döner. Sayfayı yenilemeye gerek kalmaz.
+
+Kiosk Modu: Tabletler için "Kiosk Modu" desteği sunarsın. Uygulama kapansa bile sistem kendini otomatik açar veya tabletin ana ekranında sadece bu uygulama çalışır. linkler relefonda otomatik tam ekran modunda çalışacak hale gelmeli falan
+
+
+
+aşağıda uygulama bilgileri ve referans olsun diye protoip arayüzün tasarım kodu var. hem mobil görünüm hem web için kullancağımız için ikisinde de grid ayarları önemli. prototip tasarım sana referans olsun diye verildi sen gerçekten çalışan bir uygulama yapcaksın.
+
+uygulama prd:
+
+Akıllı Restoran Adisyon Sistemi**
+
+---
+
+## 2. Amaç ve Vizyon
+restoranlarda masa bazlı sipariş ve ödeme süreçlerini **tek ekran üzerinden**, hızlı, hatasız ve sezgisel biçimde yönetmeyi amaçlayan bir adisyon sistemidir.
+
+Vizyonu; garson, kasa ve işletme sahibi arasında rol karmaşası yaratmadan, herkesin ihtiyacı olan bilgiyi **aynı arayüzde**, doğru zamanda ve net biçimde sunmaktır.
+
+Ayrı garson ekranı / ayrı kasa ekranı mantığı yoktur. **Operasyonel ekran tektir.** Yönetimsel işlemler (ürün ekleme, masa sayısı vb.) ise arka plandaki **Admin Paneli** üzerinden yürütülür.
+
+---
+
+## 3. Hedef Kitle
+
+* Küçük ve orta ölçekli restoranlar
+* Kafeler
+* Bistro ve fast-casual işletmeler
+* QR veya mobil siparişe geçmek istemeyen, sade ve hızlı çözüm arayan işletmeler
+
+---
+
+## 4. Temel Kullanıcı Rolleri
+
+### 4.1 Operasyon Kullanıcısı (Garson / Kasa)
+
+* Masaları görür
+* Sipariş alır
+* Sipariş ekler
+* Hesap görüntüler
+* Ödeme alır ve masayı kapatır
+
+> Not: Rol ayrımı yoktur. Yetki değil, **akış odaklı tasarım** vardır.
+
+### 4.2 Admin (Yönetici)
+
+* Masa sayısını yönetir
+* Ürün ekler / siler / düzenler
+* Fiyat günceller
+* (İleride) Raporlara erişir
+
+---
+
+## 5. Temel Özellikler (Core Features)
+
+### 5.1 Masa Bazlı Sipariş Yönetimi
+
+* Her masa sistemde ayrı bir varlık olarak tutulur
+* Her masaya birden fazla sipariş eklenebilir
+* Siparişler zaman sırasına göre listelenir
+
+### 5.2 Tek Ekran Operasyon Mantığı
+
+* Ana ekranda tüm masalar görünür
+* Bir masaya tıklandığında:
+
+  * Sipariş listesi
+  * Ara toplam
+  * Toplam tutar
+  * Sipariş ekleme alanı
+  * Ödeme alma butonu görüntülenir
+
+### 5.3 Dinamik Sipariş Ekleme
+
+* Ödeme alınmadan önce:
+
+  * Mevcut masaya yeni ürün eklenebilir
+  * Toplam tutar anlık güncellenir
+
+### 5.4 Ödeme ve Masa Kapatma
+
+* “Ödeme Alındı” aksiyonu:
+
+  * Siparişleri kilitler
+  * Masayı otomatik olarak **boş** duruma çeker
+  * Masa rengi güncellenir
+
+### 5.5 Masa Durumlarının Renklerle Gösterimi
+
+* **Boş Masa:** Açık / nötr renk (örn. yeşil veya gri)
+* **Dolu Masa:** Canlı / dikkat çekici renk (örn. kırmızı veya turuncu)
+
+> Amaç: Uzaktan tek bakışta masa durumu anlaşılması
+
+---
+
+## 6. Ekranlar ve Detayları
+
+### 6.1 Ana Ekran – Masa Görünümü
+
+**İçerik:**
+
+* Masa kartları (grid layout)
+* Masa numarası
+* Anlık toplam tutar (opsiyonel)
+* Renk ile durum bilgisi
+
+**Etkileşimler:**
+
+* Masa kartına tıklama → Masa Detay Ekranı
+* Uzun basma (opsiyonel) → Hızlı aksiyonlar
+
+---
+
+### 6.2 Masa Detay Ekranı
+
+**İçerik:**
+
+* Masa numarası
+* Sipariş listesi
+
+  * Ürün adı
+  * Adet
+  * Birim fiyat
+* Ara toplam
+* Genel toplam
+
+**Aksiyonlar:**
+
+* ➕ Ürün ekle
+* ➖ Ürün çıkar / adet azalt
+* 🧾 Ödeme al
+
+---
+
+### 6.3 Ürün Seçme / Ekleme Paneli
+
+**İçerik:**
+
+* Ürün listesi
+* Kategoriler (opsiyonel)
+* Hızlı ekleme butonları
+
+**Davranış:**
+
+* Ürüne dokun → Siparişe eklenir
+* Aynı ürün tekrar eklenirse adet artar
+
+---
+
+### 6.4 Admin Paneli (Ayrı Alan)
+
+#### 6.4.1 Masa Yönetimi
+
+* Toplam masa sayısı tanımlama
+* Masa silme / ekleme
+
+#### 6.4.2 Ürün Yönetimi
+
+* Ürün ekleme
+* Ürün düzenleme
+* Fiyat güncelleme
+* Ürün silme
+
+---
+
+## 7. Veri Modeli (Özet)
+
+### Masa
+
+* id
+* masaNumarası
+* durum (boş / dolu)
+
+### Sipariş
+
+* id
+* masaId
+* ürünler[]
+* toplamTutar
+* ödemeDurumu
+
+### Ürün
+
+* id
+* ad
+* fiyat
+* aktifMi
+
+---
+
+## 8. Tasarım ve UX Prensipleri
+
+### 8.1 Tasarım Tarzı
+
+* Minimal
+* Yüksek kontrast
+* Büyük dokunmatik alanlar
+* Tablet kullanımına uygun
+
+### 8.2 UX İlkeleri
+
+* Tek bakışta anlaşılabilirlik
+* Minimum tıklama
+* Hata payını azaltan akışlar
+* Kritik aksiyonlarda (ödeme) onay adımı
+
+---
+
+## 9. Teknik ve Platform Varsayımları
+
+* Tablet öncelikli (Android / iOS)
+* Offline-first mantık (opsiyonel)
+* Backend destekli yapı
+* Gerçek zamanlı veri güncelleme (opsiyonel)
+
+---
+
+## 10. Gelecek Versiyonlar (Out of Scope)
+
+* Günlük / aylık raporlar
+* Kullanıcı yetkilendirme
+* Çok şubeli yapı
+* QR menü entegrasyonu
+
+---
+
+## 11. Başarı Kriterleri
+
+* Sipariş alma süresinde azalma
+* Yanlış hesap / unutulan siparişlerin azalması
+* Yeni personelin hızlı adapte olması
+* Masa devir hızının artması
+
+---
+
+**Özetle:** TableFlow, restoran operasyonunu karmaşıklaştırmadan dijitalleştiren, tek ekran mantığıyla hız ve netlik sunan bir adisyon çözümüdür.
+
+
+Temel Özellikler:
+Masa Yönetimi: Masaları listeleme, durumlarını (dolu/boş) gösterme ve sipariş yönetimi için masa seçimine izin verme.
+
+Sipariş Girişi: Personelin bir masaya hızlıca ürün eklemesini ve toplam tutarın gerçek zamanlı (anlık) olarak güncellenmesini sağlama.
+
+Dinamik Toplam Hesaplama: Tüm siparişleri ve güncellemeleri içeren adisyon tutarının otomatik ve anlık olarak hesaplanması.
+
+Ödeme İşlemleri: Personelin ödeme alabilmesi ve işlem tamamlandığında masa durumunun otomatik olarak (boşa) güncellenmesi.
+
+Yönetim Paneli: Masaları, ürünleri ve fiyatlandırmayı yönetmek için ayrı bir yönetici arayüzü.
+
+Stil Rehberi:
+
+
+Yerleşim (Layout): Masaların ve durumlarının birbirinden net bir şekilde ayrıldığı, ana ekranda ızgara (grid) düzeni.
+
+Geçişler: Sipariş toplamları güncellenirken ve masa durumları değişirken yumuşak ve zarif geçiş efektleri.
+
+
+ek konuşma analiz edersin:
+kanka şimdi senden roadmape eklemek için revize isticem
+bide proje durumu sayfasını revize etceksin son yaptığın uygulamalarla
+
+şimdi bu saas projesinde bu landing page de adam abonelik seçtikten sonra giriş yapacak sonra bu giriş yapınca abone olunca işte ona özel domain verilecek işte bu adisyon sistemine geçicek anladın mı yani adisyon sistemine girmek abonelik yönetmek için landing pageden girecek site giriş bilgilerindeki e posta ve şifre adisyon sistemi epsota ve şifresi aynı olacak match olacak onlar sonra mesela ultra pakette adam 10 tane ayrı restoranı için ayrı ayrı adisyon sistemi alabilir detaylı raporlama alabilir falan bunları da eklicez sen önce annladığını yaz bana ne anladıysan ve dosyları sonra revize et yarın devam etcem çünkü
+
+Thought for 6s
+
+
+
+✅ Anladığım
+SaaS Akışı:
+Landing Page (restosync.com)
+    ↓
+[Abonelik Seç] → [Kayıt Ol / Giriş Yap]
+    ↓
+Ödeme Yap (Stripe/iyzico)
+    ↓
+Özel Domain Oluştur (ör: kahvesi.restosync.com)
+    ↓
+Adisyon Sistemine Yönlendir
+Kritik Noktalar:
+Konu	Açıklama
+Tek Auth	Landing page e-posta/şifre = Adisyon sistemi e-posta/şifre (aynı Supabase Auth)
+Subdomain	Her şirket için benzersiz URL: {firma}.restosync.com
+
+ **Açıklama:** Web Dashboard hem restoran yönetimine giriş noktası hem de raporlama merkezidir.
+> Kullanıcı buradan restoranlarını görür, seçtiği restoran için Flutter adisyon sistemine geçer.
+> İleride aynı dashboard üzerinden satış raporları, grafikler ve analitik verilere erişim sağlanacak.

@@ -1,0 +1,259 @@
+ Yeni Nesil Restoran POS ve Dijital Adisyon Sistemleri İçin Kapsamlı Stratejik Analiz, Fonksiyonel Gereksinimler ve Pazar Konumlandırma Raporu
+1. Yönetici Özeti ve Pazar Dinamikleri
+Türkiye ve küresel pazardaki restoran otomasyonu ekosistemi, geleneksel "yazar kasa" mantığından ayrılarak, uçtan uca entegre, bulut tabanlı ve veri odaklı yönetim platformlarına dönüşmüştür. Bu rapor, Menulux, Adisyo, Odoo, SambaPOS ve Simpra gibi pazar liderlerinin derinlemesine analizine dayanarak, yeni geliştirilecek bir POS (Point of Sale) ve adisyon sistemi için gerekli olan ekran akışlarını, kullanıcı deneyimi (UX) standartlarını, modüler mimariyi ve web sitesi stratejilerini belirlemektedir.
+
+Mevcut pazarın analizi, başarının sadece sipariş girmekten ibaret olmadığını göstermektedir. Restoran işletmecileri artık stok maliyetlerini reçete bazında takip edebilen, üçüncü taraf paket servis platformları (Yemeksepeti, Trendyol Yemek, Getir) ile çift yönlü entegrasyon sağlayan ve garsonlardan kuryelere kadar tüm personelin performansını ölçebilen "canlı" sistemler talep etmektedir. Özellikle Türkiye pazarında, Gelir İdaresi Başkanlığı (GİB) uyumlu e-Fatura/e-Arşiv entegrasyonları ve ÖKC (Ödeme Kaydedici Cihaz) bağlantıları, sistemin "olmazsa olmaz" teknik gereksinimlerinin başında gelmektedir.   
+
+Bu rapor, yeni bir ürün geliştirmek isteyen girişimciye, rakip ürünlerin güçlü ve zayıf yönlerini deşifre ederek, teknik bir yol haritası sunmayı amaçlamaktadır. Analiz edilen veriler, kullanıcı arayüzlerinin "minimum tık" (click-reduction) prensibine göre tasarlanması gerektiğini, web sitesinin ise teknik özelliklerden ziyade "çözüm ve donanım" odaklı kurgulanmasının satış dönüşümünü artırdığını ortaya koymaktadır.
+
+2. Rakip Sistemlerin Mimari ve Fonksiyonel Dekonstrüksiyonu
+Pazarda yer alan temel oyuncuların incelenmesi, her birinin farklı bir kullanıcı kitlesini ve işletme modelini hedeflediğini göstermektedir. Bu segmentasyonu anlamak, geliştirilecek yeni uygulamanın hangi boşluğu dolduracağını belirlemek adına kritiktir.
+
+2.1. Menulux: Görsel Odaklı ve Çoklu Cihaz Ekosistemi
+Menulux, incelemeler ışığında kendini sadece bir yazılım olarak değil, bir "donanım ve yazılım ekosistemi" olarak konumlandırmaktadır. Sistemin en belirgin özelliği, kullanıcı arayüzünün (UI) yoğun görsel öğelerle desteklenmesidir.
+
+Ürün Mimarisi: Menulux, farklı işletme tipleri için özelleşmiş dikey çözümler sunar. "Premium POS" büyük zincirler ve AVM şubeleri için tam kontrol sağlarken, "Tablet POS" daha küçük kafeler için kompakt bir çözüm sunar.   
+
+Ekran Akışları ve UX: Menulux'ün arayüzü, okuma yazma oranı düşük personelin dahi hızlıca kullanabilmesi için ürün fotoğraflarına ve renk kodlarına ağırlık verir. Garson el terminalleri, masaüstü POS ve müşteri kioskları aynı tasarım dilini konuşur, bu da eğitim maliyetlerini düşürür.   
+
+Fark Yaratıcı Özellik: "Self-Order Kiosk" ve "Dijital QR Menü" modülleri, sadece sipariş almayı değil, müşterinin kendi kendine sipariş vermesini teşvik ederek işletmenin personel maliyetlerini düşürmeyi hedefler. Alerjen uyarıları ve çoklu dil desteği, turistik bölgelerdeki işletmeler için kritik bir satış argümanıdır.   
+
+2.2. Adisyo: Bulut Tabanlı ve "Uygulama Marketi" Yaklaşımı
+Adisyo, özellikle KOBİ segmentindeki kafeler ve restoranlar için düşük giriş bariyeri sunan, kurulumu kolay bir SaaS (Software as a Service) çözümüdür.
+
+Modüler Yapı: Adisyo'nun en güçlü stratejik hamlesi, temel POS özelliklerini yalın tutup, gelişmiş özellikleri (Stok Yönetimi, Caller ID, Kurye Takip) bir "Uygulama Marketi" mantığıyla sunmasıdır. Kullanıcı ihtiyacı olan modülü "yükler" veya satın alır. Bu, arayüzün her zaman temiz kalmasını sağlar.   
+
+Entegrasyon Gücü: Yemeksepeti, Getir ve Trendyol Yemek gibi platformlardan gelen siparişleri tek bir ekranda toplama yeteneği, paket servis ağırlıklı çalışan işletmeler için Adisyo'yu vazgeçilmez kılar. Bu entegrasyon, işletmeciyi "tablet karmaşasından" kurtarır.   
+
+UX Felsefesi: Sürükle-bırak masa düzeni ve renk kodlu masa durumları (boş, dolu, hesap istendi) ile son derece sezgisel bir akışa sahiptir. Eğitim gerektirmeden "kur ve kullan" mantığına dayanır.   
+
+2.3. SambaPOS: Özelleştirilebilir Güç ve Otomasyon
+SambaPOS, özellikle detaylı yetkilendirme ve karmaşık operasyonel kurgular (scripting) gerektiren işletmeler için "Power User" (ileri düzey kullanıcı) çözümü olarak öne çıkar.
+
+Esneklik: Rakiplerinin aksine, SambaPOS arayüzü neredeyse tamamen özelleştirilebilir. Ekrandaki butonların yerinden, fiş şablonlarının tasarımına kadar her detay işletmeye göre ayarlanabilir. Bu, karmaşık "Happy Hour" kuralları veya özel indirim senaryoları (örneğin: "Bir pizza alana içecek %50 indirimli ama sadece Salı günleri") tanımlamak isteyen işletmeler için idealdir.   
+
+Ödeme ve Parçalı Hesap: SambaPOS'un en güçlü olduğu alanlardan biri, masayı parçalı ödeme (Alman usulü) ile kapatma, ürünleri ikram etme (gift) veya zayi (void) işlemlerini detaylı loglarla yönetebilme yeteneğidir.   
+
+2.4. Odoo: ERP Entegrasyonu ve Süreç Yönetimi
+Odoo, POS sistemini devasa bir ERP (Kurumsal Kaynak Planlama) yapısının sadece bir "ucu" olarak sunar.
+
+Bütünleşik Veri: Odoo POS'ta satılan bir kahve, sadece kasaya para girmesi demek değildir; aynı zamanda arka planda stoktan 15 gram kahve çekirdeğinin düşmesi, muhasebe kaydının oluşması ve gerekirse tedarikçiye otomatik sipariş geçilmesi demektir.   
+
+Çevrimdışı (Offline) Yetenek: Odoo'nun en kritik teknik avantajı, internet bağlantısı kopsa bile tarayıcı tabanlı olarak çalışmaya devam edebilmesi ve bağlantı geldiğinde verileri senkronize etmesidir. Bu, altyapı sorunları yaşayan bölgeler için hayati bir özelliktir.   
+
+2.5. Simpra: Otel ve Zincir Restoran Odaklılık
+Simpra, otelcilik sektörüyle (PMS) derin entegrasyonu ve çok şubeli yapıların merkezi yönetimi konusundaki yetkinliği ile ayrışır.
+
+Merkezi Yönetim: Simpra, yüzlerce şubesi olan bir zincirin menü fiyatlarını tek bir merkezden güncellemesine ve tüm şubelerde anlık olarak devreye almasına olanak tanır. Stok transferleri ve şubeler arası ürün hareketi gibi lojistik süreçleri yönetir.   
+
+3. Modül Analizi ve Geliştirilecek Uygulama İçin Gereksinimler
+Kendi geliştireceğiniz restoran POS ve adisyon uygulamasında bulunması gereken modüller ve bu modüllerin içermesi gereken teknik özellikler, rakip analizlerine dayanarak aşağıda detaylandırılmıştır.
+
+3.1. Terminal ve Sipariş Alma Ekranı (Front-End)
+Uygulamanın kalbi olan bu ekran, garsonların en çok zaman geçirdiği yerdir. Hız ve hatasızlık esastır.
+
+Ekran Düzeni (Layout):
+
+Üç Sütunlu Mimari: Sol tarafta "Adisyon/Fiş Özeti" (eklenen ürünler), orta tarafta "Kategoriler" (Ana Yemek, İçecekler), sağ tarafta ise seçili kategorinin "Ürünleri" yer almalıdır. Bu düzen, göz hareketini minimize eder.   
+
+Görsel Navigasyon: Menulux örneğindeki gibi, ürün butonlarında yüksek çözünürlüklü görseller veya anlaşılır ikonlar kullanılmalıdır. Metin tabanlı butonlar, okuma hızını düşürür.   
+
+Fonksiyonel Gereksinimler:
+
+Akıllı Modifikasyonlar (Order Tags): Bir ürün seçildiğinde (örneğin "Izgara Köfte"), sistem garsonu zorunlu seçimlere yönlendirmelidir (Pişme derecesi? Yanında pilav mı püre mi?). Bu, mutfağa giden siparişin eksiksiz olmasını sağlar ve garsonun mutfağa geri dönüp soru sormasını engeller.   
+
+Hızlı Miktar Değişimi: Adisyon listesindeki ürüne tıklayıp numerik klavyeden sayı girerek miktar artırma/azaltma imkanı sunulmalıdır.
+
+İkram ve İptal Yönetimi: Yetkili personel için, ürünü "İkram" (Bedelsiz) olarak işaretleme veya "Zayi" (Stoktan düş ama ciroya ekleme) seçeneği kolay erişilebilir olmalıdır.   
+
+3.2. Masa ve Salon Yönetimi (Table Management)
+Dinamik Kat Planı: Adisyo ve Odoo'da olduğu gibi, işletme sahibi sürükle-bırak yöntemiyle masaların yerini değiştirebilmelidir. Büyük organizasyonlar veya etkinlikler için masalar birleştirilebilmelidir.   
+
+Durum Bildirimleri (Renk Kodları):
+
+Gri/Beyaz: Boş Masa.
+
+Sarı: Sipariş alındı, servis bekleniyor.
+
+Yeşil: Servis yapıldı, müşteri yiyor.
+
+Kırmızı: Hesap istendi / Ödeme bekleniyor.
+
+Zaman Aşımı Uyarısı: Masa 20 dakikadır sipariş vermediyse veya servis yapılmadıysa masa ikonu yanıp sönerek garsonu uyarmalıdır.   
+
+3.3. Ödeme ve Adisyon Kapama (Checkout)
+Ödeme ekranı, POS sistemlerinin en karmaşık UX problemlerinden biridir. Türkiye pazarında "Alman Usulü" (Parçalı Ödeme) çok yaygındır.
+
+Parçalı Ödeme (Split Bill):
+
+Ürün Bazlı Bölme: Masadaki 4 kahvenin 2'sini bir kişi, kalanları diğeri ödeyebilmelidir.
+
+Tutar Bazlı Bölme: Toplam hesabın %25'ini nakit, kalanı kredi kartı ile ödeme esnekliği sağlanmalıdır.   
+
+Entegrasyonlar:
+
+ÖKC Entegrasyonu: Adisyon kapatıldığında tutar otomatik olarak Beko, Ingenico veya Hugin marka yazar kasa POS cihazına gönderilmeli, cihazdan "Başarılı" sinyali gelince adisyon sistemde kapanmalıdır. Bu, kasiyerin tutarı elle yanlış girmesini (örneğin 100 TL yerine 10 TL yazmasını) engeller.   
+
+Sadakat (Loyalty) Kartları: Ödeme ekranında müşterinin telefon numarası veya kartı okutularak puan kazanımı veya puanla ödeme seçeneği sunulmalıdır.   
+
+3.4. Paket Servis ve Kurye Yönetimi (Delivery)
+Pandemi sonrası restoran cirolarının önemli bir kısmı paket servise kaymıştır. Adisyo ve Menulux bu alanda güçlüdür.
+
+Pazaryeri Entegrasyonu (Aggregator): Yemeksepeti, Trendyol Yemek, Getir ve Migros Yemek'ten gelen siparişler, işletmenin POS ekranına "Paket Sipariş" sekmesine otomatik düşmelidir. Sistem, bu platformlardaki ürünleri işletmenin stok kartlarıyla eşleştirebilmelidir.   
+
+Kurye Takip Modülü:
+
+Sipariş hazırlandığında "Kurye Ata" butonu ile sipariş bir kuryeye zimmetlenmelidir.
+
+Kurye dönüşte "Nakit" veya "Kredi Kartı" tahsilatını kasaya teslim ettiğinde, sistem kuryenin üzerindeki bakiyeyi (Cash Drop) düşmelidir.   
+
+Harita üzerinde kuryelerin canlı konumu ve tahmini varış süreleri izlenebilmelidir.   
+
+3.5. Mutfak Ekranı (KDS - Kitchen Display System)
+Termal yazıcıların yerini dijital ekranlar almaktadır.
+
+Sipariş Yönlendirme: İçecekler otomatik olarak bar ekranına/yazıcısına, yemekler sıcak mutfak ekranına düşmelidir.
+
+Hazırlık Süresi Takibi: Ekranda siparişin kaç dakikadır beklediği gösterilmeli, geciken siparişler renk değiştirerek (Yeşil -> Sarı -> Kırmızı) şefin dikkatini çekmelidir.   
+
+"Hazır" Bildirimi: Şef ekranda siparişi "Tamamlandı" olarak işaretlediğinde, garsonun el terminaline veya müşterinin QR menüsüne "Siparişiniz Hazır" bildirimi gitmelidir.   
+
+3.6. Stok ve Reçete Yönetimi (Inventory)
+Kârlılık analizi için kritik modüldür.
+
+Reçeteleme (Recipe): Bir "Cheeseburger" satıldığında stoktan "1 Adet Ekmek", "120gr Kıyma", "1 Dilim Peynir" düşülecek şekilde ürün ağacı (BOM) tanımlanabilmelidir.   
+
+Kritik Stok Uyarısı: Belirlenen seviyenin altına inen hammaddeler için (örneğin "Kahve çekirdeği 1kg kaldı") sistem yöneticiye e-posta veya bildirim göndermelidir.   
+
+Zayi Takibi: Mutfakta yere düşen veya bozulan ürünler sisteme "Zayi" olarak girilmeli ve gün sonunda maliyet raporuna yansıtılmalıdır.
+
+3.7. Raporlama ve Patron Uygulaması (Mobile Insights)
+İşletme sahipleri genellikle restoranın başında durmazlar.
+
+Mobil "Boss" Uygulaması: Menulux Boss ve Adisyo Patron uygulamaları gibi, anlık ciroyu, aktif masa sayısını, iptal edilen ürünleri ve ödeme tiplerini (Nakit/Kredi Kartı) gösteren ayrı bir mobil uygulama geliştirmelisiniz.   
+
+Görsel Grafikler: Satışların saatlik dağılımı (hangi saatler yoğun?), en çok satan ürünler (Pareto analizi) ve personel performans grafikleri sunulmalıdır.   
+
+4. Kullanıcı Akışları (User Flows) ve UX Analizi
+Geliştireceğiniz uygulamanın kullanıcı deneyimini rakiplerden ayrıştırmak için aşağıdaki akışları optimize etmeniz gerekmektedir.
+
+4.1. Garson Sipariş Akışı (Hız Odaklı)
+Senaryo: Kalabalık bir Cuma akşamı, garson masaya gider ve siparişi alır.
+
+Giriş: Garson PIN kodunu girer veya NFC bileklik ile terminale dokunur (Saniye kazanımı).
+
+Masa Seçimi: Kat planından "Masa 5" seçilir.
+
+Kişi Sayısı: (Opsiyonel) Sistem otomatik olarak "Kaç Kişi?" diye sorar (Kuver takibi için).
+
+Ürün Seçimi:
+
+"İçecekler" -> "Kola" -> "Zero" (Modifikatör pop-up olarak açılmalı).
+
+"Ana Yemek" -> "Burger" -> "Az Pişmiş" (Zorunlu seçim) -> "Soğan Olmasın" (Opsiyonel seçim).
+
+Özel Not: Garson klavyeden veya sesli komutla "Çocuk için, acele" notunu ekler.
+
+Gönder: "Mutfak" butonuna basılır. Sipariş yazıcılardan çıkar, masa rengi sarıya döner.
+
+Analiz: Adisyo ve SambaPOS'ta bu akış çok hızlıdır. Menulux'te görsel yoğunluk bazen deneyimli garsonu yavaşlatabilir. Sizin sisteminizde "Deneyimli Garson Modu" (sadece metin liste) ve "Yeni Garson Modu" (görsel ızgara) arasında geçiş imkanı sunulabilir.
+
+4.2. Müşteri QR Menü Akışı (Self-Service)
+Senaryo: Müşteri masadaki QR kodu okutur.
+
+Karşılama: Tarayıcıda (uygulama indirmeden) dijital menü açılır.
+
+İnceleme: Ürün fotoğraflarına tıklar, içerik ve alerjen bilgilerini (Gluten, Fıstık) görür.   
+
+Sepet: Ürünleri sepete ekler. Sistem "Yanına patates ister misin?" (Upsell) önerisi sunar.   
+
+Sipariş/Ödeme:
+
+Seçenek A: "Sipariş Ver" der, sipariş garsonun terminaline onay için düşer.
+
+Seçenek B: Kredi kartı bilgilerini girer, öder ve sipariş doğrudan mutfağa düşer (Garson aradan çıkar).
+
+Garson Çağırma: Menü üzerinden "Garson Çağır" veya "Hesap İste" butonuna basabilir.   
+
+4.3. Kasa ve Gün Sonu Akışı
+Senaryo: İşletme kapanıyor.
+
+Açık Masa Kontrolü: Sistem açık masa varsa gün sonu alınmasına izin vermemelidir.
+
+Raporlama: "Z Raporu" alınır. Sistem, POS'taki nakit, kredi kartı ve yemek çeki toplamlarını gösterir.
+
+Nakit Sayımı: Kasiyer kasadaki fiili parayı girer. Sistem "Teorik" ve "Fiili" arasındaki farkı (Kasa Açığı/Fazlası) hesaplar ve patrona bildirim atar.
+
+5. Web Siteniz İçin Stratejik İçerik ve Yapı Analizi
+Web siteniz, sadece bir vitrin değil, ürününüzün ilk demosudur. Rakip siteler (Menulux, Adisyo, Odoo) incelendiğinde, aşağıdaki bölümlerin ve içeriklerin sitenizde mutlaka yer alması gerektiği görülmektedir.
+
+5.1. Ana Sayfa (Landing Page) Stratejisi
+Donanım Görselleri: Menulux örneğinde olduğu gibi, yazılımınızın şık tabletler, kiosklar ve el terminalleri üzerinde çalışırken çekilmiş yüksek kaliteli fotoğraflarını kullanın. Restoran sahipleri "somut" bir ürün görmek ister.   
+
+Net Değer Önermesi (Value Proposition): "Restoranınızı Tek Ekrandan Yönetin" veya "Siparişten Teslimata Uçtan Uca Otomasyon" gibi güçlü bir başlık kullanın. Adisyo'nun "15 Gün Ücretsiz Dene" yaklaşımı, dönüşüm (conversion) oranını artırmak için kritiktir.   
+
+Referanslar ve Güven: "3000+ Mutlu İşletme" gibi sayaçlar ve bilinen restoran logoları güven inşa eder.   
+
+5.2. Çözüm Sayfaları (Sektörel Kırılım)
+Tek bir "Ürünümüz" sayfası yerine, sektöre özel sayfalar oluşturun. Adisyo ve SambaPOS bu stratejiyi kullanır:
+
+Restoran POS: Masa yönetimi, rezervasyon ve detaylı menü özelliklerini öne çıkarın.
+
+Kafe & Fast Food POS: Hız, barkodlu satış ve terazi entegrasyonunu vurgulayın.   
+
+Pastane POS: Gramajlı stok takibi ve üretim modülünü anlatın.
+
+Paket Servis: Pazaryeri entegrasyonlarını ve kurye takibini gösterin.
+
+5.3. Donanım ve Mağaza Sayfası
+Kullanıcılar yazılımı alırken donanımı da (Yazıcı, Tablet, Stand) sizden almak isteyecektir.
+
+Uyumlu Cihazlar: Yazılımınızın hangi cihazlarda çalıştığını net belirtin (Android, iOS, Windows).
+
+Paket Satışı: "Başlangıç Paketi: Tablet + Yazıcı + Stand = X TL" gibi hazır paketler sunarak karar verme sürecini kolaylaştırın.   
+
+5.4. Entegrasyonlar Sayfası
+Bu sayfa, teknik yeterliliğinizi kanıtlar.
+
+Yemek Kartları: Sodexo, Multinet, Ticket, Setcard logolarını ekleyin.
+
+Muhasebe: Logo, Mikro, Paraşüt gibi muhasebe programlarına veri aktarabildiğinizi belirtin.   
+
+Ödeme: Ingenico, Beko, Verifone entegrasyonlarını listeleyin.
+
+5.5. Fiyatlandırma ve Paketler
+Şeffaflık önemlidir. Odoo ve Adisyo fiyatlarını açıkça sergilerken, kurumsal çözümler genellikle "Teklif Al" der.
+
+Öneri: KOBİ'ler için şeffaf, aylık/yıllık abonelik fiyatları (SaaS modeli) sunun. "Ücretsiz Kurulum" veya "7/24 Destek Dahil" ibareleri kararı hızlandırır.
+
+5.6. Blog ve Akademi (SEO Stratejisi)
+Google aramalarında "restoran adisyon programı" veya "kafe stok takibi nasıl yapılır" gibi aramalarda çıkmak için Adisyo Blog örneğindeki gibi eğitici içerikler üretin. "Menü Mühendisliği Nedir?", "Garson Performansı Nasıl Artırılır?" gibi yazılar, potansiyel müşterileri sitenize çeker.   
+
+6. Teknik Mimari ve Geliştirme Tavsiyeleri
+Rakip analizlerinden yola çıkarak, teknik altyapınızı şu temeller üzerine kurmalısınız:
+
+6.1. Çevrimdışı Çalışma (Offline-First Architecture)
+Türkiye'de internet kesintileri yaygındır. Odoo ve Menulux'ün vurguladığı gibi, sisteminiz internet gittiğinde yerel ağda (Localhost) çalışmaya devam etmeli, internet geldiğinde veriyi buluta senkronize etmelidir. Tamamen bulut bağımlı bir sistem, internet kesildiğinde restoranı kilitler ve müşteri kaybına yol açar.   
+
+6.2. Platform Bağımsızlık (Cross-Platform)
+Müşterilerin elinde halihazırda iPad, Android tablet veya Windows dokunmatik PC olabilir. Yazılımınızı Flutter veya React Native gibi teknolojilerle geliştirerek tek kod tabanıyla tüm platformlara (iOS, Android, Windows, Web) çıktı alabilirsiniz. Adisyo'nun her platformda (Web, Tablet, Mobil) çalışabilmesi büyük bir avantajdır.   
+
+6.3. Veri Güvenliği ve KVKK
+Müşteri verilerini (telefon, adres) saklayacağınız için KVKK uyumluluğu ve veri şifreleme (End-to-End Encryption) şarttır. Bulut sunucularınızın Türkiye'de olması (veya yasalara uygun olması) tercih sebebidir.
+
+7. Sonuç ve Yol Haritası
+Pazarda Menulux, Adisyo ve SambaPOS gibi güçlü rakipler olsa da, kullanıcı deneyimine odaklanmış, donanım bağımsız ve "her şey dahil" (All-in-One) bir ekosistem sunan yeni bir oyuncu için hala fırsat vardır.
+
+Başarı için 5 Kritik Adım:
+
+UX'i Basitleştirin: Menü ve sipariş ekranlarını, teknolojiye uzak personelin bile 5 dakikada öğrenebileceği kadar basit tasarlayın. Görselliği (Menulux) ve hızı (Adisyo) birleştirin.
+
+Pazaryerlerini Kucaklayın: Yemeksepeti ve Trendyol entegrasyonlarını "ekstra" değil, sistemin "kalbi" olarak sunun.
+
+Patronu Yakalayın: İşletme sahibine, restoranında olmasa bile cebinden her şeyi görebileceği güçlü bir mobil raporlama uygulaması verin.
+
+Hibrit Çalışın: İnternet kesintisine dayanıklı bir "Offline-First" mimari kurun.
+
+Web Sitesinde Güven Satın: Sitenizde sadece özellik anlatmayın; başarı hikayeleri, donanım görselleri ve eğitim videoları ile işletmeciye "iş ortağı" olduğunuzu hissettirin.
+
+Kendi uygulamanızı geliştirirken bu rapordaki modül detaylarını bir kontrol listesi (checklist) olarak kullanmanız, pazardaki standartları yakalamanızı ve üzerine çıkmanızı sağlayacaktır.

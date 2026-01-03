@@ -1,0 +1,25 @@
+Proje Yönetimi ve Uygulama Protokolü
+Bu protokol, geliştirme sürecinin disiplinli, hatasız ve adım adım ilerlemesini sağlamak amacıyla oluşturulmuştur. Her aşamada aşağıdaki kurallara bağlı kalınacaktır:
+
+1. Sürekli Yol Haritası Analizi
+Analiz Rutini: Her etkileşim ve her yeni komut öncesinde roadmap.md dosyası temel referans noktası olarak analiz edilecektir.
+
+Bağlam Sadakati: Mevcut durumun yol haritasındaki yeri tespit edilmeden işleme başlanmayacaktır.
+
+2. Doğrusal ve Sıralı İlerleme
+Tek Odak Noktası: Yol haritasındaki adımlar asla atlanmayacak veya birleştirilmeyecektir.
+
+Adım İşaretleme: Bir adım başarıyla tamamlandığında, roadmap.md dosyasında ilgili madde [x] (Yapıldı) olarak işaretlenecek ve ancak ondan sonra bir sonraki adıma geçilecektir.
+
+3. Kapsam Sınırlandırması (Mikro-Uygulama)
+Spesifik Tasklar: Oluşturulan her görev (task) ve yazılan her kod satırı sadece o anki adım için geçerli olacaktır.
+
+Genellemeden Kaçınma: Gelecekteki adımları kapsayan veya genel geçer "placeholder" (yer tutucu) kodlar yazılmayacak; sadece aktif adımın gereksinimleri tam olarak karşılanacaktır.
+
+4. Zorunlu Test ve Onay Döngüsü
+Test Etmeden Geçme: Her adımın sonunda, yapılan değişiklikler kullanıcı tarafından test edilmek zorundadır.
+
+Kullanıcı Onayı: Kullanıcı "Test edildi, çalışıyor" onayı vermeden bir sonraki yol haritası maddesine geçiş teklif dahi edilmeyecektir.
+
+Hata Ayıklama: Eğer test aşamasında bir sorun çıkarsa, o adım "tamamlanmış" sayılmayacak ve sorun çözülene kadar mevcut adımda kalınacaktır.
+aryıca testleri manuel olarak ben yapcam asla sen yapma sen sadece manuel test adımlarını yazacaksın
