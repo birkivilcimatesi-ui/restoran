@@ -1,7 +1,8 @@
 class ApiConstants {
-  static const String supabaseUrl = 'https://gilzmsjcdzptuwiwnfuy.supabase.co';
-  static const String supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdpbHptc2pjZHpwdHV3aXduZnV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxNzE2MDMsImV4cCI6MjA4Mjc0NzYwM30.--2L7OpaOx2uh7GhAZUczx-OEZhTjUSY33xEZbjFEmk';
+  // TODO: Replace with your actual Supabase URL and Anon Key via --dart-define or environment variables
+  static const String supabaseUrl = 'YOUR_SUPABASE_URL';
+  static const String supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
   
   // Gemini API Key
-  static const String geminiApiKey = 'AIzaSyCBuo2aFJEev0gqkNzh4UE_xwYR8FtkuvA';
+  static const String geminiApiKey = 'YOUR_GEMINI_API_KEY';
 }
