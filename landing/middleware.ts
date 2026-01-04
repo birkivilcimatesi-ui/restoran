@@ -41,15 +41,14 @@ export async function middleware(request: NextRequest) {
     if (subdomain && pathname === '/') {
         console.log('🔍 Subdomain detected:', subdomain)
         try {
-            const { data: company, error } = await supabase
-                .from('companies')
-                .select('id')
-                .eq('subdomain', subdomain)
-                .single()
+            // RLS bypass için RPC fonksiyonu kullanıyoruz
+            const { data: companies, error } = await supabase
+                .rpc('get_company_by_subdomain', { lookup_subdomain: subdomain })
 
-            console.log('🔍 Supabase query result:', { company, error })
+            console.log('🔍 Supabase query result:', { companies, error })
 
-            if (company) {
+            if (companies && companies.length > 0) {
+                const company = companies[0]
                 // Flutter uygulamasına yönlendir
                 const url = request.nextUrl.clone()
                 url.pathname = '/app'
@@ -76,4 +75,3 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: ['/', '/dashboard/:path*']
 }
-
