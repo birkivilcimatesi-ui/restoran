@@ -2,16 +2,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:image_picker/image_picker.dart';
 import '../core/constants/api_constants.dart';
-
-// Web için HTML import
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
-import 'dart:async';
 
 class MenuOcrService {
   late final GenerativeModel _model;
   bool _isInitialized = false;
+  final ImagePicker _picker = ImagePicker();
 
   void _initModel() {
     if (_isInitialized) return;
@@ -23,40 +20,40 @@ class MenuOcrService {
     _isInitialized = true;
   }
 
-  /// Galeriden fotoğraf seç (Web)
+  /// Galeriden fotoğraf seç (Cross-platform)
   Future<Uint8List?> pickImage() async {
-    final completer = Completer<Uint8List?>();
-    
-    final input = html.FileUploadInputElement()
-      ..accept = 'image/*';
-    
-    input.onChange.listen((event) {
-      final file = input.files?.first;
-      if (file == null) {
-        completer.complete(null);
-        return;
+    try {
+      final XFile? image = await _picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 85, // Optimizasyon için kaliteyi biraz düşürelim
+      );
+
+      if (image != null) {
+        return await image.readAsBytes();
       }
-      
-      final reader = html.FileReader();
-      reader.onLoadEnd.listen((event) {
-        final result = reader.result;
-        if (result is String) {
-          // Data URL'den base64 kısmını al
-          final base64 = result.split(',').last;
-          completer.complete(base64Decode(base64));
-        } else {
-          completer.complete(null);
-        }
-      });
-      reader.onError.listen((event) {
-        completer.complete(null);
-      });
-      reader.readAsDataUrl(file);
-    });
-    
-    input.click();
-    
-    return completer.future;
+      return null;
+    } catch (e) {
+      debugPrint('❌ Resim seçme hatası: $e');
+      return null;
+    }
+  }
+
+  /// Kameradan fotoğraf çek (Cross-platform)
+  Future<Uint8List?> takePhoto() async {
+    try {
+      final XFile? image = await _picker.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 85,
+      );
+
+      if (image != null) {
+        return await image.readAsBytes();
+      }
+      return null;
+    } catch (e) {
+      debugPrint('❌ Fotoğraf çekme hatası: $e');
+      return null;
+    }
   }
 
   /// Seçilen fotoğrafı AI ile işle
